@@ -1,0 +1,65 @@
+{
+  "id": "03-firewall-allow-https",
+  "level": 3,
+  "title": "Open a Firewall Port",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 200,
+  "description": "Welcome to Rank Challenge. The new web server must accept HTTPS. Using the NetSecurity module, create an inbound firewall rule that allows TCP traffic on port `443`.",
+  "objectives": [
+    "Create a new firewall rule for inbound traffic",
+    "Allow TCP on the HTTPS port"
+  ],
+  "hints": [
+    "New-NetFirewallRule creates a rule.",
+    "Set -Direction Inbound, -LocalPort 443, -Protocol TCP and -Action Allow."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: let secure web traffic reach this machine from outside\nNew-NetFirewallRule -DisplayName \"Allow HTTPS\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "New-NetFirewallRule",
+        "ignoreCase": true,
+        "failMessage": "Use New-NetFirewallRule.",
+        "description": "Creates a firewall rule"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Direction\\s+Inbound",
+        "flags": "i",
+        "failMessage": "Make the rule -Direction Inbound.",
+        "description": "Inbound direction"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-LocalPort",
+        "flags": "i",
+        "failMessage": "Open the port with -LocalPort.",
+        "description": "Targets a port"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Action\\s+Allow",
+        "flags": "i",
+        "failMessage": "Permit traffic with -Action Allow.",
+        "description": "Allows the traffic"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "02-dns-cname"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "08-create-gpo",
+  "level": 8,
+  "title": "Create a GPO",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 350,
+  "description": "Welcome to Rank Challenge. You need a policy to lock down workstations. Using the GroupPolicy module, create a new GPO named `Desktop Lockdown`.",
+  "objectives": [
+    "Create a new GPO",
+    "Give it the name Desktop Lockdown"
+  ],
+  "hints": [
+    "New-GPO creates an empty Group Policy Object.",
+    "Name it with the -Name parameter."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: create the empty policy container that will hold the workstation restrictions\nNew-GPO"
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "New-GPO",
+        "ignoreCase": true,
+        "failMessage": "Create the GPO with New-GPO.",
+        "description": "Creates a GPO"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Name",
+        "flags": "i",
+        "failMessage": "Name the GPO with -Name.",
+        "description": "Names the GPO"
+      },
+      {
+        "rule": "contains-string",
+        "value": "Desktop Lockdown",
+        "ignoreCase": true,
+        "failMessage": "Name it \"Desktop Lockdown\".",
+        "description": "Correct GPO name"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "07-password-policy"
+  ]
+}

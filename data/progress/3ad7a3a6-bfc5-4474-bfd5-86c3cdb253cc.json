@@ -1,0 +1,68 @@
+{
+  "01-select-basics": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781605626934
+  },
+  "01-get-aduser": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606440951
+  },
+  "02-get-aduser-filter": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606455910
+  },
+  "03-user-properties": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606465347
+  },
+  "04-new-aduser": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606477133
+  },
+  "05-set-aduser": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606487890
+  },
+  "06-add-group-member": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606491489
+  },
+  "07-get-group-member": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606494227
+  },
+  "08-search-adaccount": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606496792
+  },
+  "09-unlock-enable": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606499621
+  },
+  "10-filtered-report": {
+    "solved": false,
+    "skipped": true,
+    "score": 0,
+    "skippedAt": 1781606502267
+  }
+}

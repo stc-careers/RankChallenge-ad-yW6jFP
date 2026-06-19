@@ -1,0 +1,56 @@
+{
+  "id": "01-dns-a-record",
+  "level": 1,
+  "title": "Create a DNS Record",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 100,
+  "description": "Welcome to Rank Challenge. A new web server needs a name. Using the DnsServer module, register a host (A) record for `web01` in the `corp.local` zone pointing at `10.0.0.5`.",
+  "objectives": [
+    "Use the cmdlet that adds an A record",
+    "Specify the zone and the IPv4 address"
+  ],
+  "hints": [
+    "Add-DnsServerResourceRecordA creates a host (A) record.",
+    "Provide -ZoneName for the zone and -IPv4Address for the target IP."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: register the new web server name in the corp.local zone, aimed at its address\nAdd-DnsServerResourceRecordA -Name \"web01\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "Add-DnsServerResourceRecordA",
+        "ignoreCase": true,
+        "failMessage": "Use Add-DnsServerResourceRecordA.",
+        "description": "Adds an A record"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-ZoneName",
+        "flags": "i",
+        "failMessage": "Specify the zone with -ZoneName.",
+        "description": "Names the zone"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-IPv4Address",
+        "flags": "i",
+        "failMessage": "Point it at the host with -IPv4Address.",
+        "description": "Sets the IP address"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": []
+}

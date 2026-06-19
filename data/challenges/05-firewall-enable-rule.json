@@ -1,0 +1,58 @@
+{
+  "id": "05-firewall-enable-rule",
+  "level": 5,
+  "title": "Enable a Rule",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 250,
+  "description": "Welcome to Rank Challenge. Admins cannot connect because the `Remote Desktop` firewall rule is switched off. Turn the existing rule back on.",
+  "objectives": [
+    "Use the cmdlet that enables a firewall rule",
+    "Target the Remote Desktop rule"
+  ],
+  "hints": [
+    "Enable-NetFirewallRule activates a disabled rule.",
+    "Pick the rule with -DisplayName."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: switch the admin remote-session rule back into the active state\nDisable-NetFirewallRule -DisplayName \"Remote Desktop\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "Enable-NetFirewallRule",
+        "ignoreCase": true,
+        "failMessage": "Turn the rule on with Enable-NetFirewallRule.",
+        "description": "Enables the rule"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-DisplayName",
+        "flags": "i",
+        "failMessage": "Identify the rule with -DisplayName.",
+        "description": "Names the rule"
+      },
+      {
+        "rule": "contains-string",
+        "value": "Remote Desktop",
+        "ignoreCase": true,
+        "failMessage": "Enable the Remote Desktop rule.",
+        "description": "Targets Remote Desktop"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "04-firewall-change-rule"
+  ]
+}

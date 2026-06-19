@@ -1,0 +1,58 @@
+{
+  "id": "04-firewall-change-rule",
+  "level": 4,
+  "title": "Tighten a Rule",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 250,
+  "description": "Welcome to Rank Challenge. A legacy rule named `Legacy App` is too permissive. Change the existing rule so its action becomes `Block`. The starter only reads the rule — modify it instead.",
+  "objectives": [
+    "Use the cmdlet that modifies a firewall rule",
+    "Change its action to Block"
+  ],
+  "hints": [
+    "Set-NetFirewallRule edits an existing rule.",
+    "Identify it with -DisplayName and change -Action Block."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: stop the old legacy rule from permitting its traffic any longer\nGet-NetFirewallRule -DisplayName \"Legacy App\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "Set-NetFirewallRule",
+        "ignoreCase": true,
+        "failMessage": "Modify the rule with Set-NetFirewallRule.",
+        "description": "Modifies the rule"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-DisplayName",
+        "flags": "i",
+        "failMessage": "Identify the rule with -DisplayName.",
+        "description": "Names the rule"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Action\\s+Block",
+        "flags": "i",
+        "failMessage": "Block traffic with -Action Block.",
+        "description": "Blocks the traffic"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "03-firewall-allow-https"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "02-dns-cname",
+  "level": 2,
+  "title": "Alias a Host",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 150,
+  "description": "Welcome to Rank Challenge. Marketing wants `www` to point at the web server. Add a CNAME (alias) record named `www` in the `corp.local` zone whose target is `web01.corp.local`.",
+  "objectives": [
+    "Use the cmdlet that adds a CNAME record",
+    "Set the alias target and the zone"
+  ],
+  "hints": [
+    "Add-DnsServerResourceRecordCName creates an alias record.",
+    "Use -HostNameAlias for the target host and -ZoneName for the zone."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: make the friendly name point at the existing web host inside the same zone\nAdd-DnsServerResourceRecord -Name \"www\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "Add-DnsServerResourceRecordCName",
+        "ignoreCase": true,
+        "failMessage": "Use Add-DnsServerResourceRecordCName.",
+        "description": "Adds a CNAME record"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-HostNameAlias",
+        "flags": "i",
+        "failMessage": "Point the alias with -HostNameAlias.",
+        "description": "Sets the alias target"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-ZoneName",
+        "flags": "i",
+        "failMessage": "Specify the zone with -ZoneName.",
+        "description": "Names the zone"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "01-dns-a-record"
+  ]
+}

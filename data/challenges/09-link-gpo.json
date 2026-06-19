@@ -1,0 +1,58 @@
+{
+  "id": "09-link-gpo",
+  "level": 9,
+  "title": "Link a GPO",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 350,
+  "description": "Welcome to Rank Challenge. The `Desktop Lockdown` GPO exists but is not applied anywhere. Link it to the Sales OU (`OU=Sales,DC=corp,DC=local`) so it takes effect.",
+  "objectives": [
+    "Link the GPO with New-GPLink",
+    "Target the Sales OU"
+  ],
+  "hints": [
+    "New-GPLink attaches a GPO to an OU, site, or domain.",
+    "Name the GPO with -Name and the OU with -Target."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: apply the existing lockdown policy to the Sales organizational unit\nNew-GPO -Name \"Desktop Lockdown\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "New-GPLink",
+        "ignoreCase": true,
+        "failMessage": "Link the GPO with New-GPLink.",
+        "description": "Links the GPO"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Name",
+        "flags": "i",
+        "failMessage": "Name the GPO with -Name.",
+        "description": "Names the GPO"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Target",
+        "flags": "i",
+        "failMessage": "Point it at the OU with -Target.",
+        "description": "Targets the OU"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "08-create-gpo"
+  ]
+}

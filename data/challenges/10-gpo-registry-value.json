@@ -1,0 +1,65 @@
+{
+  "id": "10-gpo-registry-value",
+  "level": 10,
+  "title": "Policy Registry Setting",
+  "category": "network",
+  "categoryLabel": "Active Directory",
+  "points": 400,
+  "description": "Welcome to Rank Challenge — the finale. Lock down the desktop through Group Policy. On the `Desktop Lockdown` GPO, set a registry value that disables the registry editor: key `HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System`, value name `DisableRegistryTools`, type `DWord`, value `1`.",
+  "objectives": [
+    "Use Set-GPRegistryValue on the GPO",
+    "Specify the key, value name, and DWord type"
+  ],
+  "hints": [
+    "Set-GPRegistryValue writes a registry-based policy setting into a GPO.",
+    "Provide -Key, -ValueName, -Type DWord and -Value."
+  ],
+  "hintPenalty": 15,
+  "validationType": "text-match",
+  "files": [
+    {
+      "filename": "task.ps1",
+      "language": "powershell",
+      "editable": true,
+      "content": "# TODO: push a registry-based restriction into the lockdown policy to block a built-in tool\nSet-GPRegistryValue -Name \"Desktop Lockdown\""
+    }
+  ],
+  "validation": {
+    "parseRules": [
+      {
+        "rule": "contains-string",
+        "value": "Set-GPRegistryValue",
+        "ignoreCase": true,
+        "failMessage": "Use Set-GPRegistryValue.",
+        "description": "Sets a policy registry value"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Key",
+        "flags": "i",
+        "failMessage": "Specify the registry path with -Key.",
+        "description": "Specifies the key"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-ValueName",
+        "flags": "i",
+        "failMessage": "Name the value with -ValueName.",
+        "description": "Names the value"
+      },
+      {
+        "rule": "regex",
+        "pattern": "-Type\\s+DWord",
+        "flags": "i",
+        "failMessage": "Set the type with -Type DWord.",
+        "description": "Uses a DWord type"
+      }
+    ]
+  },
+  "previewConfig": {
+    "type": "console"
+  },
+  "unlockRequires": [
+    "09-link-gpo"
+  ]
+}
